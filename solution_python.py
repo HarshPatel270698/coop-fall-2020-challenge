@@ -23,7 +23,7 @@ class EventSourcer():
         if temp_counter > self.change_counter:
             self.value = self.change_history[temp_counter]
             self.change_history.append(self.value)
-            change_counter += 1
+            self.change_counter += 1
             return self.value
         else:
             print("No more acceptable undos")
@@ -35,7 +35,7 @@ class EventSourcer():
         if temp_counter < self.change_counter:
             self.value = self.change_history[temp_counter]
             self.change_history.append(self.value)
-            change_counter += 1
+            self.change_counter += 1
             return self.value
         else:
             print("No more acceptable redos")
@@ -47,7 +47,7 @@ class EventSourcer():
         if temp_counter < self.change_counter:
             self.value = self.change_history[temp_counter]
             self.change_history.append(self.value)
-            change_counter += 1
+            self.change_counter += 1
             return self.value
         else:
             print("Can't do undo for these many steps")
@@ -59,7 +59,7 @@ class EventSourcer():
         if temp_counter < self.change_counter:
             self.value = self.change_history[temp_counter]
             self.change_history.append(self.value)
-            change_counter += 1
+            self.change_counter += 1
             return self.value
         else:
             print("Can't do redo for these many steps")
