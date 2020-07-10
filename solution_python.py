@@ -1,8 +1,5 @@
 class EventSourcer():
     # Do not change the signature of any functions
-
-    change_history = []
-    change_counter = 0
     def __init__(self):
         self.value = 0
         self.change_history = [self.value]
