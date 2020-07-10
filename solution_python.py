@@ -20,47 +20,39 @@ class EventSourcer():
     def undo(self):
         temp_counter = self.change_counter
         temp_counter-=1
-        if temp_counter > self.change_counter:
-            self.value = self.change_history[temp_counter]
-            self.change_history.append(self.value)
-            self.change_counter += 1
-            return self.value
-        else:
-            print("No more acceptable undos")
-            return self.value
+        if temp_counter <= 0:
+            return
+        self.value = self.change_history[temp_counter]
+        self.change_history.append(self.value)
+        self.change_counter += 1
+        return self.value
 
     def redo(self):
         temp_counter = self.change_counter
         temp_counter+=1
-        if temp_counter < self.change_counter:
-            self.value = self.change_history[temp_counter]
-            self.change_history.append(self.value)
-            self.change_counter += 1
-            return self.value
-        else:
-            print("No more acceptable redos")
-            return self.value
+        if temp_counter <= 0:
+            return
+        self.value = self.change_history[temp_counter]
+        self.change_history.append(self.value)
+        self.change_counter += 1
+        return self.value
 
     def bulk_undo(self, steps: int):
         temp_counter = self.change_counter
         temp_counter-=steps
-        if temp_counter < self.change_counter:
-            self.value = self.change_history[temp_counter]
-            self.change_history.append(self.value)
-            self.change_counter += 1
-            return self.value
-        else:
-            print("Can't do undo for these many steps")
-            return self.value
+        if temp_counter <= 0:
+            return
+        self.value = self.change_history[temp_counter]
+        self.change_history.append(self.value)
+        self.change_counter += 1
+        return self.value
 
     def bulk_redo(self, steps: int):
         temp_counter = self.change_counter
         temp_counter+=steps
-        if temp_counter < self.change_counter:
-            self.value = self.change_history[temp_counter]
-            self.change_history.append(self.value)
-            self.change_counter += 1
-            return self.value
-        else:
-            print("Can't do redo for these many steps")
-            return self.value
+        if temp_counter <= 0:
+            return
+        self.value = self.change_history[temp_counter]
+        self.change_history.append(self.value)
+        self.change_counter += 1
+        return self.value
