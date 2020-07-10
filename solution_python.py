@@ -7,13 +7,13 @@ class EventSourcer():
 
     def add(self, num: int):
         self.value = self.value + num
-        self.change_counter+=1
+        self.change_counter += 1
         self.change_history.append(self.value)
         return self.value
 
     def subtract(self, num: int):
         self.value = self.value - num
-        self.change_counter+=1
+        self.change_counter += 1
         self.change_history.append(self.value)
         return self.value
 
@@ -22,7 +22,8 @@ class EventSourcer():
         temp_counter-=1
         if temp_counter > self.change_counter:
             self.value = self.change_history[temp_counter]
-            change_counter = temp_counter
+            self.change_history.append(self.value)
+            change_counter += 1
             return self.value
         else:
             print("No more acceptable undos")
@@ -33,7 +34,8 @@ class EventSourcer():
         temp_counter+=1
         if temp_counter < self.change_counter:
             self.value = self.change_history[temp_counter]
-            change_counter = temp_counter
+            self.change_history.append(self.value)
+            change_counter += 1
             return self.value
         else:
             print("No more acceptable redos")
@@ -44,7 +46,8 @@ class EventSourcer():
         temp_counter-=steps
         if temp_counter < self.change_counter:
             self.value = self.change_history[temp_counter]
-            change_counter = temp_counter
+            self.change_history.append(self.value)
+            change_counter += 1
             return self.value
         else:
             print("Can't do undo for these many steps")
@@ -55,7 +58,8 @@ class EventSourcer():
         temp_counter+=steps
         if temp_counter < self.change_counter:
             self.value = self.change_history[temp_counter]
-            change_counter = temp_counter
+            self.change_history.append(self.value)
+            change_counter += 1
             return self.value
         else:
             print("Can't do redo for these many steps")
